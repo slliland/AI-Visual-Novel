@@ -1,8 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI-Powered Visual Novel Adventure
+
+An interactive web-based visual novel where the story is generated in real-time by streaming AI responses. Users start with a prompt and guide the narrative through interactive choices, creating a unique, AI-driven adventure.
+
+## Features
+
+- **Interactive Storytelling**: Start your adventure with a custom prompt
+- **Streaming Text with Typing Effect**: Real-time story generation with smooth character-by-character animation
+- **Dynamic Character Avatars**: Character portraits change based on emotions and context
+- **Choice-Driven Narrative**: Make decisions that shape the story's direction
+- **Immersive Background**: Beautiful background imagery with atmospheric overlays
+- **Sound Effects**: Optional subtle audio feedback for typing and interactions
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Error Handling**: Comprehensive error boundaries and graceful failure handling
+
+## Characters
+
+The visual novel features characters from Genshin Impact with multiple emotional expressions:
+
+- **Lumine**: A traveler searching for answers
+- **Tartaglia** (Childe): A battle-hungry Harbinger  
+- **Venti**: A carefree bard with hidden depths
+- **Zhongli**: A knowledgeable consultant with ancient wisdom
+- **Narrator**: For descriptive, non-dialogue text
+
+Each character has 15+ emotional states including: Neutral, Happy, Sad, Angry, Surprised, Thinking, Confident, and more.
+
+## Technical Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Backend**: Next.js Route Handlers
+- **Streaming**: Custom XML parser for real-time content processing
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or  
+pnpm install
+```
+
+3. Run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +61,109 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### XML Streaming & Parsing
 
-## Learn More
+The application uses a custom streaming XML parser that processes AI responses in real-time:
 
-To learn more about Next.js, take a look at the following resources:
+1. **API Route**: `/api/story` streams XML content character by character
+2. **XML Parser**: `StreamingXMLParser` class processes chunks progressively
+3. **Component Updates**: UI updates dynamically as new content arrives
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### XML Format
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application parses structured XML responses:
 
-## Deploy on Vercel
+```xml
+<Narrator>Descriptive text appears here</Narrator>
+<character name="Lumine">
+  <action expression="Happy">Character action description</action>
+  <say>Character dialogue goes here</say>
+</character>
+<choices>
+  <choice id="choice1">First choice option</choice>
+  <choice id="choice2">Second choice option</choice>
+</choices>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Key Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `VisualNovel`: Main orchestrating component
+- `StoryDisplay`: Handles text animation and avatar display
+- `ChoiceSystem`: Interactive choice selection
+- `StreamingXMLParser`: Real-time XML processing
+- `ErrorBoundary`: Error handling and recovery
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/story/          # Streaming API endpoint
+│   ├── components/         # React components
+│   │   ├── VisualNovel.tsx
+│   │   ├── StoryDisplay.tsx
+│   │   ├── ChoiceSystem.tsx
+│   │   └── ErrorBoundary.tsx
+│   ├── lib/
+│   │   ├── types.ts        # TypeScript definitions
+│   │   └── xmlParser.ts    # XML streaming parser
+│   └── globals.css         # Global styles
+public/
+├── avatars/                # Character portraits
+│   ├── Lumine/
+│   ├── Tartaglia/
+│   ├── Venti/
+│   └── Zhongli/
+└──  sample.xml             # Sample story data
+```
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to [Vercel](https://vercel.com)
+3. Deploy automatically on every commit
+
+### Other Platforms
+
+The application can be deployed to any platform supporting Next.js:
+
+- Netlify
+- Railway  
+- DigitalOcean App Platform
+- AWS Amplify
+
+## Development Notes
+
+### Mock LLM Integration
+
+Currently uses sample XML files instead of real LLM APIs to focus on parsing and UI implementation. The streaming mechanism is designed to easily integrate with real AI services like OpenAI or Anthropic.
+
+### Adding New Characters
+
+1. Add character portraits to `public/avatars/[CharacterName]/`
+2. Update the `Speaker` type in `types.ts`
+3. Add character name to avatar path mapping in `StoryDisplay.tsx`
+
+### Extending XML Format
+
+The parser supports extensible XML formats. Add new tag handlers in `StreamingXMLParser.processChunk()`.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is open source and available under the MIT License.
