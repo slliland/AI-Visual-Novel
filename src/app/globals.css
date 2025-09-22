@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-pink: #ec4899;
+  --primary-pink-hover: #db2777;
+  --light-pink: #fce7f3;
+  --accent-pink: #f472b6;
 }
 
 @theme inline {
@@ -16,6 +20,10 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-pink: #f472b6;
+    --primary-pink-hover: #ec4899;
+    --light-pink: #831843;
+    --accent-pink: #be185d;
   }
 }
 
@@ -68,10 +76,10 @@ body {
 }
 
 .story-scroll::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--primary-pink);
   border-radius: 10px;
 }
 
 .story-scroll::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--primary-pink-hover);
 }

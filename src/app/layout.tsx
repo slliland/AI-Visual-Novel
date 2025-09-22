@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AI Visual Novel Adventure",
   description: "An interactive visual novel powered by AI where your choices shape the story",
+  icons: {
+    icon: "/web-icon.svg",
+  },
 };
 
 export default function RootLayout({
