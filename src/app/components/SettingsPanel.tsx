@@ -107,7 +107,14 @@ export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                   step="0.1"
                   value={musicVolume}
                   onChange={handleVolumeChange}
-                  className="flex-1 h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer slider accent-amber-600"
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
+                  className="flex-1 h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer slider accent-amber-600 touch-manipulation"
+                  style={{
+                    WebkitAppearance: 'none',
+                    appearance: 'none',
+                    background: `linear-gradient(to right, #f59e0b 0%, #f59e0b ${musicVolume * 100}%, #fef3c7 ${musicVolume * 100}%, #fef3c7 100%)`
+                  }}
                 />
                 <span className="text-sm text-amber-600 w-8">{Math.round(musicVolume * 100)}%</span>
               </div>

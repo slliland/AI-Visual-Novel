@@ -68,6 +68,23 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
       // Initialize music manager
       musicManager.initialize();
       
+      // Mobile-specific: Add touch event listeners for audio context
+      const enableAudio = () => {
+        if (typeof window !== 'undefined') {
+          // Create a silent audio context to enable audio on mobile
+          const audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+          if (audioContext.state === 'suspended') {
+            audioContext.resume();
+          }
+        }
+      };
+      
+      // Enable audio on first user interaction
+      const events = ['touchstart', 'touchend', 'click', 'keydown'];
+      events.forEach(event => {
+        document.addEventListener(event, enableAudio, { once: true });
+      });
+      
       const conversations = await manager.getAllConversations();
       setConversations(conversations);
       
@@ -126,13 +143,31 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
       setContextSegments(context);
       setPrompt(conversation.initialPrompt);
       setHasStarted(conversation.segments.length > 0);
+      
+      // Start from the beginning of the story, not the end
       setState(prev => ({
         ...prev,
-        currentStoryIndex: conversation.segments.length - 1,
-        showChoices: conversation.choices.length > 0,
+        currentStoryIndex: 0, // Start from the beginning
+        displayedText: '',
+        isTyping: false,
+        showChoices: false, // Don't show choices immediately
         storyHistory: [conversation.initialPrompt],
+        waitingForContinue: conversation.segments.length > 0, // Show continue button if there are segments
+        storyCompleted: false,
+        storySummary: '',
       }));
+      
+      // Reset other states
+      setCompletedThreads([]);
+      setEncounteredCharacters([]);
+      setCharacterInformation({});
+      setShowBook(false);
       setShowSidebar(false);
+      
+      console.log('📖 Loaded conversation:', conversationId, 'with', conversation.segments.length, 'segments');
+      console.log('📖 First segment:', conversation.segments[0]);
+      console.log('📖 Last segment:', conversation.segments[conversation.segments.length - 1]);
+      console.log('📖 Choices:', conversation.choices.length);
     }
   }, []);
 
@@ -994,7 +1029,7 @@ Thank you for experiencing this interactive story!`;
                 Continue
               </button>
               <p className="text-pink-200 text-sm mt-2 opacity-75">
-                Click to continue the conversation
+                {currentConversationId ? 'Click to continue the loaded conversation' : 'Click to continue the conversation'}
               </p>
             </div>
           )}

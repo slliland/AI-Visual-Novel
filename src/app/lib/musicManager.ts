@@ -22,6 +22,10 @@ class MusicManager {
       this.audio.volume = this.volume;
       this.audio.preload = 'auto'; // Preload for faster startup
       
+      // Mobile-specific audio settings
+      this.audio.crossOrigin = 'anonymous';
+      this.audio.setAttribute('playsinline', 'true'); // Important for iOS
+      
       // Load saved preferences from localStorage
       const savedMuted = localStorage.getItem('music-muted');
       const savedVolume = localStorage.getItem('music-volume');
@@ -38,6 +42,15 @@ class MusicManager {
       // Apply muted state
       this.audio.muted = this.isMuted;
       
+      // Add error handling for mobile
+      this.audio.addEventListener('error', (e) => {
+        console.error('🎵 Audio error:', e);
+      });
+      
+      this.audio.addEventListener('canplaythrough', () => {
+        console.log('🎵 Audio ready to play');
+      });
+      
       console.log('🎵 Music manager initialized');
     }
   }
@@ -49,12 +62,24 @@ class MusicManager {
     
     if (this.audio && !this.isMuted) {
       try {
-        await this.audio.play();
-        console.log('🎵 Background music started');
+        // Ensure audio is loaded before playing
+        if (this.audio.readyState < 2) {
+          await this.audio.load();
+        }
+        
+        const playPromise = this.audio.play();
+        
+        if (playPromise !== undefined) {
+          await playPromise;
+          console.log('🎵 Background music started');
+        }
       } catch (error) {
         console.log('🎵 Could not auto-play music (user interaction required):', error);
+        // On mobile, we might need to wait for user interaction
+        return false;
       }
     }
+    return true;
   }
 
   pause() {
@@ -71,12 +96,17 @@ class MusicManager {
     }
     
     // Save to localStorage
-    localStorage.setItem('music-muted', muted.toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('music-muted', muted.toString());
+    }
     
     if (muted) {
       this.pause();
     } else {
-      this.play();
+      // On mobile, try to play but don't fail if it doesn't work
+      this.play().catch(() => {
+        console.log('🎵 Music will start after user interaction');
+      });
     }
     
     console.log('🎵 Music muted:', muted);
@@ -89,7 +119,9 @@ class MusicManager {
     }
     
     // Save to localStorage
-    localStorage.setItem('music-volume', this.volume.toString());
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('music-volume', this.volume.toString());
+    }
     
     console.log('🎵 Music volume set to:', this.volume);
   }
