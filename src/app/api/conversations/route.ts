@@ -113,13 +113,20 @@ export async function POST(request: NextRequest) {
     if (!process.env.POSTGRES_URL) {
       console.log('⚠️ No database connection available, creating mock conversation');
       const mockId = uuidv4();
-      return NextResponse.json({
+      const mockConversation = {
         id: mockId,
         title,
-        initialPrompt,
-        userSession,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString()
+        initial_prompt: initialPrompt,
+        user_session: userSession,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      };
+      
+      return NextResponse.json({
+        conversation: mockConversation,
+        segments: [],
+        choices: [],
+        selectedChoices: []
       });
     }
 

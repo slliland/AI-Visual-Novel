@@ -10,15 +10,15 @@ interface SettingsPanelProps {
 }
 
 export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
-  // const [soundEnabled, setSoundEnabled] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(false);
   const [musicMuted, setMusicMuted] = useState(false);
   const [musicVolume, setMusicVolume] = useState(0.3);
 
   useEffect(() => {
     // Load settings from localStorage
-    // const savedSoundEnabled = localStorage.getItem('vn-sound-enabled') === 'true';
-    // setSoundEnabled(savedSoundEnabled);
-    // soundManager.setEnabled(savedSoundEnabled);
+    const savedSoundEnabled = localStorage.getItem('vn-sound-enabled') === 'true';
+    setSoundEnabled(savedSoundEnabled);
+    soundManager.setEnabled(savedSoundEnabled);
     
     // Initialize music manager and load music settings
     musicManager.initialize();
@@ -26,16 +26,16 @@ export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
     setMusicVolume(musicManager.getVolume());
   }, []);
 
-  // const toggleSound = () => {
-  //   const newValue = !soundEnabled;
-  //   setSoundEnabled(newValue);
-  //   soundManager.setEnabled(newValue);
-  //   localStorage.setItem('vn-sound-enabled', newValue.toString());
-  //   
-  //   if (newValue) {
-  //     soundManager.playChoiceSound();
-  //   }
-  // };
+  const toggleSound = () => {
+    const newValue = !soundEnabled;
+    setSoundEnabled(newValue);
+    soundManager.setEnabled(newValue);
+    localStorage.setItem('vn-sound-enabled', newValue.toString());
+    
+    if (newValue) {
+      soundManager.playChoiceSound();
+    }
+  };
 
   const toggleMusic = () => {
     const newValue = !musicMuted;
@@ -119,6 +119,32 @@ export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
                 <span className="text-sm text-amber-600 w-8">{Math.round(musicVolume * 100)}%</span>
               </div>
             )}
+          </div>
+
+          {/* Sound Effects Settings */}
+          <div className="space-y-3 p-4 bg-white rounded-lg shadow-inner border border-amber-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-amber-800">Sound Effects</h3>
+                <p className="text-sm text-amber-600">
+                  Typing sounds and UI interaction effects
+                </p>
+              </div>
+              <button
+                onClick={toggleSound}
+                className={`
+                  relative inline-flex h-6 w-11 items-center rounded-full transition-colors
+                  ${soundEnabled ? 'bg-amber-600' : 'bg-gray-300'}
+                `}
+              >
+                <span
+                  className={`
+                    inline-block h-4 w-4 transform rounded-full bg-white transition-transform
+                    ${soundEnabled ? 'translate-x-6' : 'translate-x-1'}
+                  `}
+                />
+              </button>
+            </div>
           </div>
         </div>
 
