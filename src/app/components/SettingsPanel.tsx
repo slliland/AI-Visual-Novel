@@ -10,21 +10,55 @@ interface SettingsPanelProps {
 }
 
 export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const [musicMuted, setMusicMuted] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true); // Default to enabled
+  const [musicMuted, setMusicMuted] = useState(false); // Default to not muted
   const [musicVolume, setMusicVolume] = useState(0.3);
 
   useEffect(() => {
-    // Load settings from localStorage
-    const savedSoundEnabled = localStorage.getItem('vn-sound-enabled') === 'true';
-    setSoundEnabled(savedSoundEnabled);
-    soundManager.setEnabled(savedSoundEnabled);
-    
-    // Initialize music manager and load music settings
+    // Initialize music manager first to set defaults
     musicManager.initialize();
-    setMusicMuted(musicManager.isMusicMuted());
-    setMusicVolume(musicManager.getVolume());
+    
+    // Load settings from localStorage, default to enabled if not set
+    const savedSoundEnabled = localStorage.getItem('vn-sound-enabled');
+    const soundEnabledValue = savedSoundEnabled === null ? true : savedSoundEnabled === 'true';
+    setSoundEnabled(soundEnabledValue);
+    soundManager.setEnabled(soundEnabledValue);
+    
+    // Set default sound enabled if not set
+    if (savedSoundEnabled === null) {
+      localStorage.setItem('vn-sound-enabled', 'true');
+    }
+    
+    // Load music settings directly from localStorage with defaults
+    const savedMusicMuted = localStorage.getItem('music-muted');
+    const musicMutedValue = savedMusicMuted === null ? false : savedMusicMuted === 'true';
+    setMusicMuted(musicMutedValue);
+    
+    const savedMusicVolume = localStorage.getItem('music-volume');
+    const musicVolumeValue = savedMusicVolume === null ? 0.3 : parseFloat(savedMusicVolume);
+    setMusicVolume(musicVolumeValue);
   }, []);
+
+  // Update settings when panel opens
+  useEffect(() => {
+    if (isOpen) {
+      // Re-read settings when panel opens
+      const savedSoundEnabled = localStorage.getItem('vn-sound-enabled');
+      const soundEnabledValue = savedSoundEnabled === null ? true : savedSoundEnabled === 'true';
+      console.log('🔧 Settings Panel: Loading sound enabled:', soundEnabledValue, 'from localStorage:', savedSoundEnabled);
+      setSoundEnabled(soundEnabledValue);
+      
+      const savedMusicMuted = localStorage.getItem('music-muted');
+      const musicMutedValue = savedMusicMuted === null ? false : savedMusicMuted === 'true';
+      console.log('🔧 Settings Panel: Loading music muted:', musicMutedValue, 'from localStorage:', savedMusicMuted);
+      setMusicMuted(musicMutedValue);
+      
+      const savedMusicVolume = localStorage.getItem('music-volume');
+      const musicVolumeValue = savedMusicVolume === null ? 0.3 : parseFloat(savedMusicVolume);
+      console.log('🔧 Settings Panel: Loading music volume:', musicVolumeValue, 'from localStorage:', savedMusicVolume);
+      setMusicVolume(musicVolumeValue);
+    }
+  }, [isOpen]);
 
   const toggleSound = () => {
     const newValue = !soundEnabled;

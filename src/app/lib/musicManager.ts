@@ -26,17 +26,24 @@ class MusicManager {
       this.audio.crossOrigin = 'anonymous';
       this.audio.setAttribute('playsinline', 'true'); // Important for iOS
       
-      // Load saved preferences from localStorage
+      // Load saved preferences from localStorage, default to enabled if not set
       const savedMuted = localStorage.getItem('music-muted');
       const savedVolume = localStorage.getItem('music-volume');
       
+      // Default to not muted (enabled) if no saved preference
       if (savedMuted !== null) {
         this.isMuted = savedMuted === 'true';
+      } else {
+        this.isMuted = false; // Default to enabled
+        localStorage.setItem('music-muted', 'false');
       }
       
       if (savedVolume !== null) {
         this.volume = parseFloat(savedVolume);
         this.audio.volume = this.volume;
+      } else {
+        // Volume is already set to 0.3 in constructor, just save it
+        localStorage.setItem('music-volume', this.volume.toString());
       }
       
       // Apply muted state

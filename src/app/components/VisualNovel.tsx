@@ -10,6 +10,7 @@ import { SettingsPanel } from './SettingsPanel';
 import { ConversationSidebar } from './ConversationSidebar';
 import { IllustratedBook } from './IllustratedBook';
 import { musicManager } from '../lib/musicManager';
+import { soundManager } from '../lib/soundManager';
 
 interface VisualNovelProps {
   initialPrompt?: string;
@@ -67,6 +68,11 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
       
       // Initialize music manager
       musicManager.initialize();
+      
+      // Initialize sound effects with default enabled
+      const savedSoundEnabled = localStorage.getItem('vn-sound-enabled');
+      const soundEnabledValue = savedSoundEnabled === null ? true : savedSoundEnabled === 'true';
+      soundManager.setEnabled(soundEnabledValue);
       
       // Mobile-specific: Add touch event listeners for audio context
       const enableAudio = () => {
