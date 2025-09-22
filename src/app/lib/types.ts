@@ -7,6 +7,9 @@ export type Emotion =
 export interface Choice {
   id: string;
   text: string;
+  isSpecial?: boolean;
+  currentCharacter?: string;
+  disabled?: boolean;
 }
 
 export interface StorySegment {
@@ -34,4 +37,19 @@ export interface VisualNovelState {
   isTyping: boolean;
   showChoices: boolean;
   storyHistory: string[];
+}
+
+export interface ConversationSection {
+  id: string;
+  title: string;
+  date: Date;
+  initialPrompt: string;
+  segments: StorySegment[];
+  choices: Choice[];
+  selectedChoices: string[];
+}
+
+export interface ConversationHistory {
+  conversations: ConversationSection[];
+  currentConversationId: string | null;
 }
