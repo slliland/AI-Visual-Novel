@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
-import { CreateConversationRequest, ConversationsListResponse } from '../../lib/database-types';
+import { CreateConversationRequest } from '../../lib/database-types';
 
 // GET /api/conversations - Get all conversations for a user session
 export async function GET(request: NextRequest) {
@@ -43,8 +43,8 @@ export async function GET(request: NextRequest) {
     `;
 
     // Group segments and choices by conversation
-    const segmentsByConv: Record<string, any[]> = {};
-    const choicesByConv: Record<string, any[]> = {};
+    const segmentsByConv: Record<string, Array<{ speaker: string; emotion: string; text: string }>> = {};
+    const choicesByConv: Record<string, Array<{ id: string; text: string }>> = {};
 
     segmentsResult.rows.forEach(segment => {
       if (!segmentsByConv[segment.conversation_id]) {

@@ -61,7 +61,7 @@ export function IllustratedBook({
           <h2 className="text-2xl font-bold flex items-center">
             📖 Character Information Book
           </h2>
-          <p className="text-amber-100 mt-2">Information you've gathered so far</p>
+          <p className="text-amber-100 mt-2">Information you&apos;ve gathered so far</p>
         </div>
 
         <div className="flex h-[calc(90vh-120px)]">
@@ -149,7 +149,7 @@ export function IllustratedBook({
                           <div className="space-y-3 max-h-96 overflow-y-auto">
                             {info.map((item, index) => (
                               <div key={index} className="bg-amber-50 p-3 rounded border-l-4 border-amber-400">
-                                <p className="text-amber-800 leading-relaxed">"{item}"</p>
+                                <p className="text-amber-800 leading-relaxed">&ldquo;{item}&rdquo;</p>
                               </div>
                             ))}
                             <div className="text-xs text-amber-600 italic mt-4 pt-3 border-t border-amber-200">
