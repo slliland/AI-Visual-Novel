@@ -21,6 +21,15 @@ export async function GET(
       );
     }
 
+    // Check if database is available
+    if (!process.env.POSTGRES_URL) {
+      console.log('⚠️ No database connection available, returning 404 for conversation');
+      return NextResponse.json(
+        { error: 'Conversation not found' },
+        { status: 404 }
+      );
+    }
+
     // Get conversation
     const conversationResult = await sql`
       SELECT * FROM conversations 

@@ -16,6 +16,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Check if database is available
+    if (!process.env.POSTGRES_URL) {
+      console.log('⚠️ No database connection available, returning empty conversations');
+      return NextResponse.json({
+        conversations: []
+      });
+    }
+
     // Get all conversations for the user
     const conversationsResult = await sql`
       SELECT id, title, initial_prompt, created_at, updated_at
@@ -99,6 +107,20 @@ export async function POST(request: NextRequest) {
         { error: 'Title, initial prompt, and user session are required' },
         { status: 400 }
       );
+    }
+
+    // Check if database is available
+    if (!process.env.POSTGRES_URL) {
+      console.log('⚠️ No database connection available, creating mock conversation');
+      const mockId = uuidv4();
+      return NextResponse.json({
+        id: mockId,
+        title,
+        initialPrompt,
+        userSession,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
     }
 
     const conversationId = uuidv4();
