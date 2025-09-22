@@ -97,8 +97,8 @@ export class StreamingXMLParser {
       const characterContent = legacyCharacterMatch[2];
 
       // Extract actions and dialogue
-      const actionRegex = /<action expression="([^"]+)">(.*?)<\/action>/g;
-      const sayRegex = /<say>(.*?)<\/say>/g;
+      // const actionRegex = /<action expression="([^"]+)">(.*?)<\/action>/g;
+      // const sayRegex = /<say>(.*?)<\/say>/g;
 
       let emotion: Emotion = 'neutral';
 

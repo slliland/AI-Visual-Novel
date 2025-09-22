@@ -10,15 +10,15 @@ interface SettingsPanelProps {
 }
 
 export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  // const [soundEnabled, setSoundEnabled] = useState(false);
   const [musicMuted, setMusicMuted] = useState(false);
   const [musicVolume, setMusicVolume] = useState(0.3);
 
   useEffect(() => {
     // Load settings from localStorage
-    const savedSoundEnabled = localStorage.getItem('vn-sound-enabled') === 'true';
-    setSoundEnabled(savedSoundEnabled);
-    soundManager.setEnabled(savedSoundEnabled);
+    // const savedSoundEnabled = localStorage.getItem('vn-sound-enabled') === 'true';
+    // setSoundEnabled(savedSoundEnabled);
+    // soundManager.setEnabled(savedSoundEnabled);
     
     // Initialize music manager and load music settings
     musicManager.initialize();
@@ -26,16 +26,16 @@ export function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
     setMusicVolume(musicManager.getVolume());
   }, []);
 
-  const toggleSound = () => {
-    const newValue = !soundEnabled;
-    setSoundEnabled(newValue);
-    soundManager.setEnabled(newValue);
-    localStorage.setItem('vn-sound-enabled', newValue.toString());
-    
-    if (newValue) {
-      soundManager.playChoiceSound();
-    }
-  };
+  // const toggleSound = () => {
+  //   const newValue = !soundEnabled;
+  //   setSoundEnabled(newValue);
+  //   soundManager.setEnabled(newValue);
+  //   localStorage.setItem('vn-sound-enabled', newValue.toString());
+  //   
+  //   if (newValue) {
+  //     soundManager.playChoiceSound();
+  //   }
+  // };
 
   const toggleMusic = () => {
     const newValue = !musicMuted;

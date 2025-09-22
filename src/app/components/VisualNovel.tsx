@@ -358,7 +358,7 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
     
     // Calculate updated states BEFORE making API call
     let updatedCompletedThreads = [...completedThreadsRef.current]; // Use ref for immediate access
-    let updatedCharacterProgress = { ...characterProgressRef.current }; // Use ref for immediate access
+    const updatedCharacterProgress = { ...characterProgressRef.current }; // Use ref for immediate access
     
     console.log('🔧 Starting with existing character progress (ref):', JSON.stringify(characterProgressRef.current, null, 2));
     console.log('🔧 Starting with existing character progress (state):', JSON.stringify(characterProgress, null, 2));
@@ -471,8 +471,8 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
       if (!reader) throw new Error('No response stream');
 
       let buffer = '';
-      let accumulatedSegments: any[] = [];
-      let accumulatedChoices: any[] = [];
+      let accumulatedSegments: StorySegment[] = [];
+      let accumulatedChoices: Choice[] = [];
       
       while (true) {
         const { done, value } = await reader.read();
@@ -578,7 +578,7 @@ export function VisualNovel({ initialPrompt }: VisualNovelProps) {
           // Generate story summary for stories without explicit choices
           if (segments.length > 0) {
             const choicesMade = state.storyHistory.slice(1);
-            const characters = encounteredCharacters.map(char => char.charAt(0).toUpperCase() + char.slice(1));
+            // const characters = encounteredCharacters.map(char => char.charAt(0).toUpperCase() + char.slice(1));
             
             const summary = `🎭 Story Complete! 🎭
 
@@ -668,7 +668,7 @@ Thank you for experiencing this interactive story!`;
           setTimeout(() => {
             if (segments.length > 0) {
               const choicesMade = state.storyHistory.slice(1);
-              const characters = encounteredCharacters.map(char => char.charAt(0).toUpperCase() + char.slice(1));
+              // const characters = encounteredCharacters.map(char => char.charAt(0).toUpperCase() + char.slice(1));
               
               const summary = `🎭 Story Complete! 🎭
 
@@ -706,9 +706,6 @@ Your journey began with: "${state.storyHistory[0] || 'An adventure in unknown la
 
 📝 Choices Made: ${choicesMade.length}
 ${choicesMade.map((choice, i) => `   ${i + 1}. ${choice}`).join('\n')}
-
-👥 Characters Encountered: ${characters.join(', ')}
-📖 Story Segments: ${segments.length}
 
 Your unique path through this tale has been shaped by every decision you made. Each choice led to different encounters, conversations, and outcomes.
 

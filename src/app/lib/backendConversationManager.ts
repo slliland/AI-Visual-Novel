@@ -2,8 +2,7 @@ import { ConversationSection, StorySegment, Choice, Speaker, Emotion } from './t
 import { 
   CreateConversationRequest, 
   UpdateConversationRequest, 
-  ConversationResponse, 
-  ConversationsListResponse 
+  ConversationResponse
 } from './database-types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -117,7 +116,7 @@ export class BackendConversationManager {
       const data = await response.json();
       
       // The API now returns full conversation data, no need for individual calls
-      const conversations: ConversationSection[] = data.conversations.map((conv: any) => ({
+      const conversations: ConversationSection[] = data.conversations.map((conv: { id: string; title: string; initialPrompt: string; date: string; segments: Array<{ speaker: string; emotion: string; text: string }>; choices: Array<{ id: string; text: string }> }) => ({
         id: conv.id,
         title: conv.title,
         initialPrompt: conv.initialPrompt,
