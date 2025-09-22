@@ -1,0 +1,40 @@
+<Narrator>The warm scent of chili oil and sizzling meat wraps around me as I step inside Wanmin Restaurant.</Narrator>
+<Narrator>The cheerful chatter dies instantly, and I freeze as every head turns toward the door.</Narrator>
+
+<character name="Lumine">
+  <action expression="Surprised">Nearly dropping her chopsticks, golden eyes widening</action>
+  <say>Another traveler? Here in Liyue Harbor?</say>
+  <action expression="Happy">Standing gracefully, her white dress swaying with the movement</action>
+  <say>It's rare to meet someone else who journeys between worlds.</say>
+</character>
+
+<character name="Zhongli">
+  <action expression="Neutral">Looking up from his tea with measured interest</action>
+  <say>Indeed. Your arrival was... anticipated.</say>
+  <action expression="Thinking">Setting down his cup with deliberate care</action>
+  <say>The contracts speak of one who would arrive when the harbor moon reaches its zenith.</say>
+</character>
+
+<character name="Tartaglia">
+  <action expression="Confident">Leaning back in his chair with a sharp grin</action>
+  <say>Ha! Another fighter walks through that door - I can smell it.</say>
+  <action expression="Very Happy">Standing up, cracking his knuckles</action>
+  <say>The way you carry yourself, the weight of your steps... You're no ordinary wanderer!</say>
+</character>
+
+<character name="Venti">
+  <action expression="Happy">Strumming a cheerful note on his lyre</action>
+  <say>Ehe~ What an auspicious wind blows you our way!</say>
+  <action expression="Confident">Hopping down from his perch on the windowsill</action>
+  <say>I was just composing a ballad about mysterious strangers. Care to inspire the next verse?</say>
+</character>
+
+<Narrator>The tension in the air mingles with curiosity as four pairs of eyes watch you, each holding their own secrets and expectations.</Narrator>
+
+<choices>
+  <choice id="talk_lumine">Talk to Lumine about journeying between worlds</choice>
+  <choice id="talk_zhongli">Ask Zhongli about the contracts and destiny</choice>
+  <choice id="talk_tartaglia">Discuss the harbor's restlessness with Tartaglia</choice>
+  <choice id="talk_venti">Listen to Venti's stories about ancient seals</choice>
+  <choice id="end_story">End the conversation</choice>
+</choices>
