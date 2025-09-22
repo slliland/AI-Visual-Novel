@@ -4,7 +4,7 @@ An interactive web-based visual novel with character conversations and choice-dr
 
 ## Live Demo
 
-**[Play Now](https://ai-visual-novel-2h7rj83s7-sllilands-projects.vercel.app)**
+**[Play Now](https://ai-visual-novel.vercel.app/)**
 
 ## 📸 Screenshots
 
