@@ -2,29 +2,29 @@
 
 An interactive web-based visual novel with character conversations and choice-driven storytelling.
 
-## 🎮 Live Demo
+## Live Demo
 
 **[Play Now](https://ai-visual-novel-2h7rj83s7-sllilands-projects.vercel.app/)**
 
 ## 📸 Screenshots
 
 ### Choices Panel
-[![Choices Panel](https://drive.google.com/file/d/1nC5vZ5pL-01wmElJ_0-DjXyuL8pqYGDR/view?usp=sharing)](https://drive.google.com/file/d/1nC5vZ5pL-01wmElJ_0-DjXyuL8pqYGDR/view?usp=sharing)
+[![Choices Panel](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeiecjzswfvq76vb4jyjwrh42rmrpeglpsgcqgy4fxs5ypanu3sfdcu)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeiecjzswfvq76vb4jyjwrh42rmrpeglpsgcqgy4fxs5ypanu3sfdcu)
 
 ### Story Context Teller
-[![Story Context Teller](https://drive.google.com/file/d/147X0LY4XMYN1lxLiM-g0C69MVBUdXYNL/view?usp=sharing)](https://drive.google.com/file/d/147X0LY4XMYN1lxLiM-g0C69MVBUdXYNL/view?usp=sharing)
+[![Story Context Teller](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeiepwzkavgegq6sbfquxf7s2rfimrfjmfzay7jxityy2jvgdb7iuvi)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeiepwzkavgegq6sbfquxf7s2rfimrfjmfzay7jxityy2jvgdb7iuvi)
 
 ### Sidebar
-[![Sidebar](https://drive.google.com/file/d/1E6Y4A-_t2xPp8_T3UH06EPvSfqUJgFn7/view?usp=sharing)](https://drive.google.com/file/d/1E6Y4A-_t2xPp8_T3UH06EPvSfqUJgFn7/view?usp=sharing)
+[![Sidebar](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjcjub4iomxqvxjpzl7rf6hpmzj23hfwzpvf4yvcucgoqnn5byiy)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjcjub4iomxqvxjpzl7rf6hpmzj23hfwzpvf4yvcucgoqnn5byiy)
 
 ### Info Book
-[![Info Book](https://drive.google.com/file/d/1fitS-RA733c66njfCfwfGajcX1GXOeQO/view?usp=sharing)](https://drive.google.com/file/d/1fitS-RA733c66njfCfwfGajcX1GXOeQO/view?usp=sharing)
+[![Info Book](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeieak6xgtr3tzrrxogrxhoxjpbyazb4jajbyh4fi7qz2f6h76kmpvy)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeieak6xgtr3tzrrxogrxhoxjpbyazb4jajbyh4fi7qz2f6h76kmpvy)
 
 ### Settings
-[![Settings](https://drive.google.com/file/d/1pxTn8jQFnuvQyO8mydhBN6gsSmCa3c99/view?usp=sharing)](https://drive.google.com/file/d/1pxTn8jQFnuvQyO8mydhBN6gsSmCa3c99/view?usp=sharing)
+[![Settings](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeifovuerbhqwn2vock55p6ilmspavvyangcbl2y5irxn4w6xewyceq)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeifovuerbhqwn2vock55p6ilmspavvyangcbl2y5irxn4w6xewyceq)
 
 ### Story
-[![Story](https://drive.google.com/file/d/1E4o4YNoKy1zlxg439CcBBImS-FV-F-5J/view?usp=sharing)](https://drive.google.com/file/d/1E4o4YNoKy1zlxg439CcBBImS-FV-F-5J/view?usp=sharing)
+[![Story](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjdyoisa3usucx6zgbohlr5iqvvqfhwvgdetvxvohwntthi36kve)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjdyoisa3usucx6zgbohlr5iqvvqfhwvgdetvxvohwntthi36kve)
 
 ---
 > Buit by Yujian Song
