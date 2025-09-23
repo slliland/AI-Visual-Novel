@@ -27,4 +27,4 @@ An interactive web-based visual novel with character conversations and choice-dr
 [![Story](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjdyoisa3usucx6zgbohlr5iqvvqfhwvgdetvxvohwntthi36kve)](https://white-bitter-moth-609.mypinata.cloud/ipfs/bafybeicjdyoisa3usucx6zgbohlr5iqvvqfhwvgdetvxvohwntthi36kve)
 
 ---
-> Buit by Yujian Song
+> Built by Yujian Song
